@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><head><title>Diag</title></head>
+<body style="background:#111;color:#0f0;font-family:monospace;padding:20px">
+<h2>Stream Diagnose</h2>
+<div id="s"></div>
+<script>
+var P="https://exit-matrix.net/radio-proxy/?url=";
+[
+["FSK",P+"https://streaming.fueralle.org/fsk.mp3"],
+["radioeins",P+"https://dispatcher.rndfnk.com/rbb/radioeins/live/mp3/mid"],
+["ByteFM",P+"https://bytefm.cast.addradio.de/bytefm/main/mid/stream"],
+["BHR",P+"https://inklusion.stream.laut.fm/inklusion"],
+["LocalHeroes",P+"https://local_heroes.stream.laut.fm/local_heroes"],
+["DLF-CTRL",P+"https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3"]
+].forEach(function(x){
+var n=x[0],u=x[1];
+var d=document.createElement('div');
+d.style.margin='12px 0';
+d.innerHTML='<b>'+n+'</b><br>';
+var a=document.createElement('audio');
+a.controls=true;
+a.preload='none';
+a.src=u;
+var sp=document.createElement('div');
+sp.style.fontSize='11px';
+sp.textContent='Warte auf Play...';
+a.onplaying=function(){sp.style.color='#0f0';sp.textContent='SPIELT OK';};
+a.onerror=function(){sp.style.color='red';sp.textContent='FEHLER: '+(a.error?a.error.code+' '+a.error.message:'?');};
+a.onstalled=function(){sp.style.color='yellow';sp.textContent='STALLED';};
+a.onwaiting=function(){sp.style.color='cyan';sp.textContent='BUFFERING...';};
+d.appendChild(a);
+d.appendChild(sp);
+document.getElementById('s').appendChild(d);
+});
+</script></body></html>
