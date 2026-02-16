@@ -40,25 +40,34 @@
     // Parse URL params for customization
     const params = new URLSearchParams(window.location.search);
 
-    // Default demo track (can be overridden via ?audioUrl=...&metaDataUrl=...)
-    const initialTracks = [];
-
+    // Default: RADIO.m3u playlist (override via ?audioUrl=...)
     const audioUrl = params.get('audioUrl');
-    const trackName = params.get('trackName') || 'Demo Track';
-    const artistName = params.get('artistName') || '';
-
-    if (audioUrl) {
-      initialTracks.push({
-        metaData: { artist: artistName, title: trackName },
-        url: audioUrl
-      });
-    } else {
-      // Default: Winamp demo song
-      initialTracks.push({
-        metaData: { artist: "DJ Mike Llama", title: "Llama Whippin' Intro" },
-        url: "https://cdn.jsdelivr.net/gh/nicehash/nicehash.github.io/audio/demo.mp3"
-      });
-    }
+    const initialTracks = audioUrl
+      ? [{ metaData: { artist: params.get('artistName')||'', title: params.get('trackName')||'Stream' }, url: audioUrl }]
+      : [
+      { metaData: { artist: "ERRORCOMPANY", title: "LIVE" }, url: "https://securestreams5.autopo.st:1860/error" },
+      { metaData: { artist: "ERRORCOMPANY", title: "TELEFON LINE" }, url: "https://securestreams5.autopo.st:1860//TELEFON" },
+      { metaData: { artist: "BASSDRIVE", title: "Drum & Bass" }, url: "http://ice.bassdrive.net/stream" },
+      { metaData: { artist: "DLF", title: "Deutschlandfunk" }, url: "https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3" },
+      { metaData: { artist: "NDR INFO", title: "Live" }, url: "http://icecast.ndr.de/ndr/ndr1niedersachsen/lueneburg/mp3/128/stream.mp3" },
+      { metaData: { artist: "HR INFO", title: "Live" }, url: "https://dispatcher.rndfnk.com/hr/hrinfo/live/mp3/high" },
+      { metaData: { artist: "RADIO RUESSELSHEIM", title: "Live" }, url: "http://www.radio-r.net:8000/radio-r" },
+      { metaData: { artist: "FSK", title: "Hamburg" }, url: "http://streaming.fueralle.org:80/fsk.mp3" },
+      { metaData: { artist: "RADIO X", title: "Frankfurt" }, url: "http://stream.radiox.de:8000/live" },
+      { metaData: { artist: "QUERFUNK", title: "Karlsruhe" }, url: "https://mp3.querfunk.de/qfhi" },
+      { metaData: { artist: "LOCAL HEROES", title: "Lueneburg" }, url: "http://stream.laut.fm/local_heroes" },
+      { metaData: { artist: "RADIO DREYECKLAND", title: "Freiburg" }, url: "http://www.rdl.de:8000/rdl" },
+      { metaData: { artist: "radioeins", title: "rbb" }, url: "http://www.radioeins.de/livemp3" },
+      { metaData: { artist: "Byte.FM", title: "Webradio" }, url: "http://bytefm.cast.addradio.de/bytefm/main/mid/stream" },
+      { metaData: { artist: "HR3", title: "Live" }, url: "https://dispatcher.rndfnk.com/hr/hr3/live/mp3/high" },
+      { metaData: { artist: "SWR 3", title: "Live" }, url: "https://liveradio.swr.de/sw282p3/swr3/play.mp3" },
+      { metaData: { artist: "DELTA", title: "Radio" }, url: "http://streams.deltaradio.de/delta-live/mp3-192/mediaplayer" },
+      { metaData: { artist: "1LIVE", title: "WDR" }, url: "http://wdr-1live-live.icecast.wdr.de/wdr/1live/live/mp3/128/stream.mp3" },
+      { metaData: { artist: "FRITZ", title: "rbb" }, url: "https://dispatcher.rndfnk.com/rbb/fritz/live/mp3/mid" },
+      { metaData: { artist: "SOMA FM", title: "Groove Salad" }, url: "http://ice5.somafm.com/groovesalad-256-mp3" },
+      { metaData: { artist: "BHR E.V.", title: "Inklusion" }, url: "https://stream.laut.fm/inklusion" },
+      { metaData: { artist: "Unknown", title: "Stream" }, url: "http://136.243.79.109:1960/stream" },
+    ];
 
     // Skin URL (optional)
     const skinUrl = params.get('skinUrl') || null;
@@ -79,3 +88,4 @@
   </script>
 </body>
 </html>
+
