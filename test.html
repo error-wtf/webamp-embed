@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><title>Test</title></head>
+<body style="background:#000;color:#0f0;font-family:monospace;padding:20px">
+<h2>Stream Test</h2>
+<div id="s"></div>
+<script>
+[["FSK","https://exit-matrix.net/radio-proxy/?url=https://streaming.fueralle.org/fsk.mp3"],
+["radioeins","https://exit-matrix.net/radio-proxy/?url=https://www.radioeins.de/livemp3"],
+["Byte.FM","https://exit-matrix.net/radio-proxy/?url=https://bytefm.cast.addradio.de/bytefm/main/mid/stream"],
+["BHR","https://exit-matrix.net/radio-proxy/?url=https://stream.laut.fm/inklusion"],
+["DLF OK","https://exit-matrix.net/radio-proxy/?url=https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3"]
+].forEach(([n,u])=>{
+  const d=document.createElement('div');
+  d.innerHTML='<b>'+n+'</b> ';
+  const a=document.createElement('audio');
+  a.controls=true;a.src=u;
+  const sp=document.createElement('span');
+  a.onplaying=()=>{sp.style.color='#0f0';sp.textContent=' OK';};
+  a.onerror=()=>{sp.style.color='red';sp.textContent=' ERR';};
+  d.appendChild(a);d.appendChild(sp);
+  document.getElementById('s').appendChild(d);
+});
+</script></body></html>
