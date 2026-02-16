@@ -84,6 +84,10 @@
 
     webamp.renderWhenReady(document.getElementById('app')).then(() => {
       document.getElementById('loading').remove();
+      // Auto-play first track
+      webamp.play();
+    }).catch(err => {
+      document.getElementById('loading').textContent = 'Error: ' + err.message;
     });
   </script>
 </body>
